@@ -1,26 +1,5 @@
 from typing import Iterator, Any, Iterable
 
-#region Object
-
-class Object:
-    def __init__(self, name: str) -> None: ...
-    
-    # representation methods
-    def __str__(self) -> str: ...
-    def __repr__(self) -> str: ...
-
-    # remaining methods
-    def __hash__(self) -> int: ...
-    def __sizeof__(self) -> int: ...
-
-    # functions
-    def get_name(self) -> str: ...
-    def set_name(self, name: str) -> None: ...
-
-#endregion
-
-#region Command
-
 class Command:
     def __init__(self, objects_names: Iterable[str], max_objects: Iterable[int],
                        number_of_commands: int) -> None: ...
