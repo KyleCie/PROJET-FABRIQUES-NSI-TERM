@@ -3,10 +3,8 @@ from time import sleep
 
 try:
     from ObjectSystem import Object
-    from ClientSystem import Client
 except:
     from .ObjectSystem import Object
-    from .ClientSystem import Client
 
 # region Factory
 
@@ -85,9 +83,15 @@ class Factory:
     
     def __contains__(self, value: Any) -> bool:
         """
-        contains method (eg: ?)
+        contains method (eg: value in Factory_instance)
         """
 
+        if isinstance(value, str):
+            return value == self.object_name
+        
+        if isinstance(value, float) or isinstance(value, int):
+            return value == self.time_to_create
+        
         return NotImplemented
 
     # comparaison methods
@@ -202,14 +206,10 @@ class Factory:
 
         return self.__len__()
 
-    def create(self, client: Client) -> None:
+    def create(self) -> Object:
         """
-        create an object and place to the Client
-
-        :param client: Client that want the object
-        :type client: Client
+        create an object and return it.
         """
     
         sleep(self.time_to_create)
-        object_instance = Object(self.object_name)
-        client.add(object_instance)
+        return Object(self.object_name)
