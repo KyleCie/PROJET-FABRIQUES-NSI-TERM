@@ -265,7 +265,6 @@ class Repartiteur:
             if debug: print("> bilan objets recu : " + str(consommateur.bilan()))
         print("Les commandes sont terminees.")
 
-
 if __name__ == "__main__": # programme principal
 
     # --- parametres --- #
