@@ -1,4 +1,12 @@
+from threading import Thread
 from typing import Any, Iterator
+
+try:
+    from .QueueSystem import FastQueue, Queue
+    from .FactorySystem import Factory
+except:
+    from QueueSystem import FastQueue, Queue
+    from FactorySystem import Factory
 
 class Distributor:
     """
@@ -6,7 +14,7 @@ class Distributor:
     """
 
     def __init__(self, objects_names: tuple[str, ...], time_to_create: float | int,
-                       commands: dict[str, int]) -> None:
+                       commands: Queue | FastQueue, max_objects: int) -> None:
         """
         Distributor class, represent the gestion of the business.
 
@@ -21,6 +29,11 @@ class Distributor:
         self.objects_names = objects_names
         self.time_to_create = time_to_create
         self.commands = commands
+
+        self.max_iterations = max_objects*4
+        self.factorys: dict[str, Factory] = {}
+
+        self.__create_factorys()
 
     # representation methods
 
@@ -191,6 +204,14 @@ class Distributor:
 
         return (str(self.objects_names), str(self.time_to_create))
 
+    def __create_factorys(self) -> None:
+        """
+        create factorys for each objects.
+        """
+
+        for name in self.objects_names:
+            self.factorys[name] = Factory(name, self.time_to_create)
+
     # functions
 
     def len(self) -> int:
@@ -205,5 +226,33 @@ class Distributor:
         Do the commands for the clients.
         """
 
-        # TODO: do this function brother.
-        pass
+        while not self.commands.is_empty():
+
+            command: dict[str, int] | None = self.commands.sub()
+            iterations = 0
+
+            if command is None:
+                break
+
+            while iterations < self.max_iterations:
+
+                factory_to_run: list[Thread] = []
+
+                for object_name, quantity in command.items():
+                    if quantity > 0:
+                        thread = Thread(target=self.factorys[object_name].create, )
+                        factory_to_run.append(thread)
+
+                if factory_to_run == []:
+                    break
+
+                for factory in factory_to_run:
+                    factory.start()
+
+                for factory in factory_to_run:
+                    factory.join()
+                
+                iterations += 1
+
+            if iterations == self.max_iterations:
+                raise RuntimeError("Max iterations exeeded.")
