@@ -65,28 +65,28 @@ class Object:
 
     def __lt__(self, other: object) -> bool:
         """
-        less than method (eg: if Command_instance1 < Command_instance2)
+        less than method (eg: if Object_instance1 < Object_instance2)
         """
         
         return NotImplemented
 
     def __le__(self, other: object) -> bool:
         """
-        less or equal than method (eg: if Command_instance1 <= Command_instance2)
+        less or equal than method (eg: if Object_instance1 <= Object_instance2)
         """
         
         return NotImplemented
 
     def __gt__(self, other: object) -> bool:
         """
-        greater than method (eg: if Command_instance1 > Command_instance2)
+        greater than method (eg: if Object_instance1 > Object_instance2)
         """
         
         return NotImplemented
     
     def __ge__(self, other: object) -> bool:
         """
-        greater or equal than (eg: if Command_instance1 >= Command_instance2)
+        greater or equal than (eg: if Object_instance1 >= Object_instance2)
         """
         
         return NotImplemented
@@ -95,7 +95,7 @@ class Object:
 
     def __or__(self, other: "Object") -> "Object":
         """
-        or method (eg: foo = Command_instance1 | Command_instance2)
+        or method (eg: foo = Object_instance1 | Object_instance2)
         Add the two Queues and removes the duplicates (like a set)
         """
 
@@ -103,7 +103,7 @@ class Object:
 
     def __ror__(self, other: "Object") -> "Object":
         """
-        reverse or method (eg: foo = Command_instance2 | Command_instance1)
+        reverse or method (eg: foo = Object_instance2 | Object_instance1)
         Add the two Queues and removes the duplicates (like a set)
         but reversed compared to the __or__ method.
         """

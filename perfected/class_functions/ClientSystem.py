@@ -144,28 +144,28 @@ class Client:
 
     def __lt__(self, other: object) -> bool:
         """
-        less than method (eg: if Command_instance1 < Command_instance2)
+        less than method (eg: if Client_instance1 < Client_instance2)
         """
         
         return NotImplemented
 
     def __le__(self, other: object) -> bool:
         """
-        less or equal than method (eg: if Command_instance1 <= Command_instance2)
+        less or equal than method (eg: if Client_instance1 <= Client_instance2)
         """
         
         return NotImplemented
 
     def __gt__(self, other: object) -> bool:
         """
-        greater than method (eg: if Command_instance1 > Command_instance2)
+        greater than method (eg: if Client_instance1 > Client_instance2)
         """
         
         return NotImplemented
     
     def __ge__(self, other: object) -> bool:
         """
-        greater or equal than (eg: if Command_instance1 >= Command_instance2)
+        greater or equal than (eg: if Client_instance1 >= Client_instance2)
         """
         
         return NotImplemented
@@ -174,7 +174,7 @@ class Client:
 
     def __or__(self, other: "Client") -> "Client":
         """
-        or method (eg: foo = Command_instance1 | Command_instance2)
+        or method (eg: foo = Client_instance1 | Client_instance2)
         Add the two Queues and removes the duplicates (like a set)
         """
 
@@ -182,7 +182,7 @@ class Client:
 
     def __ror__(self, other: "Client") -> "Client":
         """
-        reverse or method (eg: foo = Command_instance2 | Command_instance1)
+        reverse or method (eg: foo = Client_instance2 | Client_instance1)
         Add the two Queues and removes the duplicates (like a set)
         but reversed compared to the __or__ method.
         """
@@ -193,14 +193,14 @@ class Client:
 
     def __hash__(self) -> int:
         """
-        hash method (eg: hash(Command_instance))
+        hash method (eg: hash(Client_instance))
         """
 
         return hash(self.__key())
     
     def __sizeof__(self) -> int:
         """
-        sizeof method (eg: sys.getsizeof(Command_instance))
+        sizeof method (eg: sys.getsizeof(Client_instance))
         """
 
         return object.__sizeof__(self) + \

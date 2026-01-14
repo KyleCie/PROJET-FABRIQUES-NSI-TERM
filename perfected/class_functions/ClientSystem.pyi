@@ -1,7 +1,8 @@
-from typing import Any, Iterator, Self
+from typing import Any, Iterator
 
 class Client:
-    def __init__(self) -> None: ...
+    def __init__(self, firstname: str, lastname: str, address: str, 
+                       command: dict[str, int], status: str) -> None: ...
     
     # representation methods
     def __str__(self) -> str: ...
@@ -29,14 +30,6 @@ class Client:
     # remaining methods
     def __hash__(self) -> int: ...
     def __sizeof__(self) -> int: ...
-    # Problem with doc choosen with the __new__ doc 
-    # instead of Class doc.
-    def __new__(cls) -> Self: 
-        """
-        Client class, contains informations of the client, and his command.
-        Have also a status of his command.
-        """
-        ...
 
     # functions
     def len(self) -> int: ...
